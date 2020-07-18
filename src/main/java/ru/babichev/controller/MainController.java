@@ -1,8 +1,11 @@
 package ru.babichev.controller;
 
+import org.hibernate.annotations.AttributeAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.babichev.model.Student;
 
@@ -21,5 +24,11 @@ public class MainController {
         );
         model.addAttribute("students", students);
         return "index";
+    }
+
+    @PostMapping("/create")
+    public String create(@ModelAttribute String name, Model model) {
+        model.addAttribute("name", name);
+        return "create";
     }
 }
