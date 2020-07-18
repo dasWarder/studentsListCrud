@@ -1,0 +1,20 @@
+.mainPageTitle {
+    text-align: center;
+    font-size: 20pt;
+    font-family: "Times New Roman";
+}
+
+.main_workarea {
+    margin: auto auto 20px;
+    border: 1px solid darksalmon;
+}
+
+p.main_workarea {
+    margin: 0 0 10px;
+    text-align: center;
+}
+
+table.main_workarea {
+    margin: 0 0 10px;
+    text-align: center;
+}

@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>My app</title>
-    <link th:href="@{css/style.css}" rel="stylesheet" />
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet" />
 </head>
 
 <body>
-<h1 class="mainPageTitle">List of students</h1>
-<p>Hello students!</p>
-<table>
-    <thead>
-    <tr>
-        <th> Id </th>
-        <th> Name </th>
-        <th> Surname </th>
-    </tr>
-    </thead>
-    <tbody>
-    <!--/*@thymesVar id="students" type="ru.babichev.model.Student"*/-->
-    <tr th:each="student : ${students}">
-        <td><span th:text="${student.id}"> Id </span></td>
-        <td><span th:text="${student.name}"> name </span></td>
-        <td><span th:text="${student.surname}"> surname </span></td>
-    </tr>
-    </tbody>
-</table>
+<h2 class="mainPageTitle">List of students</h2>
+<div class="main_workarea">
+    <p>Hello students!</p>
+    <table>
+        <thead>
+        <tr>
+            <th> Id </th>
+            <th> Name </th>
+            <th> Surname </th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="students" type="ru.babichev.model.Student"*/-->
+        <tr th:each="student : ${students}">
+            <td><span th:text="${student.id}"> Id </span></td>
+            <td><span th:text="${student.name}"> name </span></td>
+            <td><span th:text="${student.surname}"> surname </span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 
