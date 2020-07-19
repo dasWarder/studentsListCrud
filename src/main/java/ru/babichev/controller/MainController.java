@@ -26,9 +26,8 @@ public class MainController {
         return "index";
     }
 
-    @PostMapping("/create")
-    public String create(@ModelAttribute String name, Model model) {
-        model.addAttribute("name", name);
+    @GetMapping("/showCreatePage")
+    public String create() {
         return "create";
     }
 }
