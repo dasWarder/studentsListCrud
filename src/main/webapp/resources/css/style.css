@@ -23,6 +23,7 @@
     top:1px;
 }
 
+
 .mainPageTitle {
     font-size: 28px;
     color: #badaf8;
@@ -40,7 +41,7 @@ table{
     background-color: rgba(255,255,255,0.3);
 }
 .tbl-content{
-    height:300px;
+    height:400px;
     overflow-x:auto;
     margin-top: 0px;
     border: 1px solid rgba(255,255,255,0.3);
@@ -73,6 +74,7 @@ body{
 section{
     margin: 50px;
     margin-bottom: 20px;
+    height: 350px;
 }
 
 ::-webkit-scrollbar {

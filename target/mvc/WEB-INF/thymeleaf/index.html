@@ -17,16 +17,18 @@
                     <th><b> Name </b></th>
                     <th><b> Surname </b></th>
                     <th><b> Point </b></th>
+                    <th>                </th>
                 </tr>
                 </thead>
                 <tbody>
-                <!--/*@thymesVar id="students" type="ru.babichev.model.Student"*/-->
-                <tr th:each="student : ${students}">
-                    <td><span th:text="${student.id}"> Id </span></td>
-                    <td><span th:text="${student.name}"> name </span></td>
-                    <td><span th:text="${student.surname}"> surname </span></td>
-                    <td><span th:text="${student.point}"> point </span></td>
-                </tr>
+                    <!--/*@thymesVar id="students" type="ru.babichev.model.Student"*/-->
+                    <tr th:each="student : ${students}">
+                            <td><span th:text="${student.id}"> Id </span></td>
+                            <td><span th:text="${student.name}"> name </span></td>
+                            <td><span th:text="${student.surname}"> surname </span></td>
+                            <td><span th:text="${student.point}"> point </span></td>
+                            <td><button type="submit" class="myButton" th:action="@{/create}" method="post">Delete</button></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

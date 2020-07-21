@@ -56,4 +56,9 @@ public class Student {
     public void setPoint(int point) {
         this.point = point;
     }
+
+    public boolean isNew() {
+        return id == 0;
+    }
+
 }

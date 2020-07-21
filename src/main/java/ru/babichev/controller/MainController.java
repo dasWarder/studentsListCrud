@@ -3,31 +3,38 @@ package ru.babichev.controller;
 import org.hibernate.annotations.AttributeAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.babichev.model.Student;
 
 import java.util.*;
 
 @Controller
 public class MainController {
+    private Integer id = 0;
+
+    private Integer incrementId() {
+        return id += 1;
+    }
+
+    private List<Student> students = new ArrayList<>();
 
 
     @GetMapping("/")
     public String getAll(Model model) {
-        Collection<Student> students = Arrays.asList(
-                new Student(1, "Alex", "Brown", 4),
-                new Student(2, "Jack", "Smith", 2),
-                new Student(3, "Dave", "Johns", 5)
-        );
         model.addAttribute("students", students);
         return "index";
     }
 
     @GetMapping("/showCreatePage")
-    public String create() {
+    public String showPage() {
         return "create";
     }
+
+    @PostMapping("/create")
+    public String addStudent(@ModelAttribute Student student) {
+        student.setId(incrementId());
+        students.add(student);
+        return "redirect:/";
+    }
+
 }

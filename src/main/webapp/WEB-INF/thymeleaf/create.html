@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <title>Add form</title>
     <link th:href="@{/resources/css/style.css}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
     <section>
-        <div>
-            <p class="mainPageTitle">Add a new student</p>
-            <form action="@{/add}" th:object="${student}" method="post"></form>
-            <table>
-                <tr>
-                    <td>Student name: </td>
-                    <td><input type="text"/></td>
-                </tr>
-                <tr>
-                    <td>Student's surname</td>
-                    <td><input type="text"/></td>
-                </tr>
-                <tr>
-                    <td>Student's point</td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td><button type="submit" class="myButton">Submit</button></td>
-                </tr>
-            </table>
+        <div class="container">
+            <h2 class="mainPageTitle">Add student</h2>
+            <!--/*@thymesVar id="student" type="ru.babichev.model.Student"*/-->
+            <form action="/create" method="post" th:object="${student}">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="surname">Surname:</label>
+                    <input type="text" class="form-control" id="surname" placeholder="Enter surname" name="surname">
+                </div>
+                <div class="form-group">
+                    <label for="point">Password:</label>
+                    <input type="text" class="form-control" id="point" placeholder="Enter point" name="point">
+                </div>
+                <button type="submit" class="btn btn-primary" th:action="@{/create}" method="post">Submit</button>
+            </form>
         </div>
     </section>
 </body>
