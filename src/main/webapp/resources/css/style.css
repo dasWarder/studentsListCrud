@@ -26,6 +26,15 @@
 label {
     color: #fff;
 }
+
+.filtresSort {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15px;
+    font-color: #badaf8;
+}
+
+
 .mainPageTitle {
     font-size: 28px;
     color: #badaf8;

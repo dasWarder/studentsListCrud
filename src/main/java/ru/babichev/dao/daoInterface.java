@@ -7,5 +7,6 @@ public interface daoInterface {
 
     List<Student> getAll();
 
+    List<Student> getFiltredByPoint();
 
 }

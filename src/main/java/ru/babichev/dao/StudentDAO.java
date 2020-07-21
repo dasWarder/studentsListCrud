@@ -42,6 +42,23 @@ public class StudentDAO implements daoInterface {
 
     @Override
     public List<Student> getAll() {
+        List<Student> students1 = getStudents();
+        if (students1 != null) return students1;
+
+        return null;
+    }
+
+    public List<Student> getFiltredByPoint() {
+        List<Student> students = getStudents();
+        students.sort((s1, s2) -> {
+            return s1.getPoint() > s2.getPoint()? 1: -1;
+        });
+        if (students != null) return students;
+
+        return null;
+    }
+
+    private List<Student> getStudents() {
         List<Student> students = new ArrayList<>();
 
         try {
@@ -61,7 +78,6 @@ public class StudentDAO implements daoInterface {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return null;
     }
 }
