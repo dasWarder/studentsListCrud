@@ -1,27 +1,30 @@
 package ru.babichev.controller;
 
 import org.hibernate.annotations.AttributeAccessor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.babichev.dao.StudentDAO;
+import ru.babichev.dao.daoInterface;
 import ru.babichev.model.Student;
 
 import java.util.*;
 
 @Controller
 public class MainController {
-    private Integer id = 0;
 
-    private Integer incrementId() {
-        return id += 1;
+
+    private daoInterface studentDAO;
+
+    public MainController(daoInterface studentDAO) {
+        this.studentDAO = studentDAO;
     }
-
-    private List<Student> students = new ArrayList<>();
 
 
     @GetMapping("/")
     public String getAll(Model model) {
-        model.addAttribute("students", students);
+        model.addAttribute("students", studentDAO.getAll());
         return "index";
     }
 
@@ -32,8 +35,7 @@ public class MainController {
 
     @PostMapping("/create")
     public String addStudent(@ModelAttribute Student student) {
-        student.setId(incrementId());
-        students.add(student);
+
         return "redirect:/";
     }
 

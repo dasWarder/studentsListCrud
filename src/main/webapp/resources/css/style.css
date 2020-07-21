@@ -23,7 +23,9 @@
     top:1px;
 }
 
-
+label {
+    color: #fff;
+}
 .mainPageTitle {
     font-size: 28px;
     color: #badaf8;
@@ -74,7 +76,6 @@ body{
 section{
     margin: 50px;
     margin-bottom: 20px;
-    height: 350px;
 }
 
 ::-webkit-scrollbar {

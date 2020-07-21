@@ -10,7 +10,7 @@
 <body>
     <section>
         <div class="container">
-            <h2 class="mainPageTitle">Add student</h2>
+            <h2 class="mainPageTitle"><b>Add student</b></h2>
             <!--/*@thymesVar id="student" type="ru.babichev.model.Student"*/-->
             <form action="/create" method="post" th:object="${student}">
                 <div class="form-group">
@@ -22,10 +22,10 @@
                     <input type="text" class="form-control" id="surname" placeholder="Enter surname" name="surname">
                 </div>
                 <div class="form-group">
-                    <label for="point">Password:</label>
+                    <label for="point">Point:</label>
                     <input type="text" class="form-control" id="point" placeholder="Enter point" name="point">
                 </div>
-                <button type="submit" class="btn btn-primary" th:action="@{/create}" method="post">Submit</button>
+                <button type="submit" class="myButton" th:action="@{/create}" method="post">Add student</button>
             </form>
         </div>
     </section>

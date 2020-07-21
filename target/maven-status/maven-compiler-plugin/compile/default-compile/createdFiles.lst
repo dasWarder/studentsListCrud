@@ -1,3 +1,5 @@
-ru\babichev\model\Student.class
-ru\babichev\controller\MainController.class
+ru\babichev\dao\StudentDAO.class
 ru\babichev\utils\exception\NotFoundException.class
+ru\babichev\controller\MainController.class
+ru\babichev\dao\daoInterface.class
+ru\babichev\model\Student.class
