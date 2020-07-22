@@ -58,7 +58,7 @@ public class Student {
     }
 
     public boolean isNew() {
-        return id == 0;
+        return this.id == null;
     }
 
 }

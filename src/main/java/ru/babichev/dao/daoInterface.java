@@ -9,4 +9,8 @@ public interface daoInterface {
 
     List<Student> getFiltredByPoint();
 
+    Student get(int id);
+
+    Student create(Student student);
+
 }

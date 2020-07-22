@@ -33,6 +33,7 @@ public class MainController {
         return "create";
     }
 
+
     @GetMapping("/getSortedByPoint")
     public String getAllSortedByPoint(Model model) {
         model.addAttribute("students", studentDAO.getFiltredByPoint());
@@ -41,8 +42,15 @@ public class MainController {
 
     @PostMapping("/create")
     public String addStudent(@ModelAttribute Student student) {
-
+        Student student1 = studentDAO.create(student);
         return "redirect:/";
+    }
+
+
+    @GetMapping("/get/{id}")
+    public String get(@PathVariable("id") String id, Model model) {
+        model.addAttribute("students", studentDAO.get(Integer.parseInt(id)));
+        return "index";
     }
 
 }

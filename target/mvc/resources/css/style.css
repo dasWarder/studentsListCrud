@@ -34,6 +34,12 @@ label {
     font-color: #badaf8;
 }
 
+.filterSortSection {
+    margin-top: -40px;
+    margin-bottom: -40px;
+    margin-left: 60%;
+}
+
 
 .mainPageTitle {
     font-size: 28px;

@@ -1,11 +1,19 @@
 package ru.babichev.dao;
 
+import org.springframework.dao.support.DataAccessUtils;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 import ru.babichev.model.Student;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -14,70 +22,68 @@ import java.util.Properties;
 @Component
 public class StudentDAO implements daoInterface {
 
-    private static Connection connection;
 
-    static {
-        String url = null;
-        String username = null;
-        String password = null;
+    private static final RowMapper<Student> ROW_MAPPER = BeanPropertyRowMapper.newInstance(Student.class);
 
-        try(InputStream loadProperties = StudentDAO.class.getClassLoader().getResourceAsStream("persistence.properties")) {
-            Properties properties = new Properties();
-            properties.load(loadProperties);
-            url = properties.getProperty("url");
-            username = properties.getProperty("username");
-            password = properties.getProperty("password");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private final JdbcTemplate jdbcTemplate;
 
-        try {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
-        }
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    private final SimpleJdbcInsert insertStudent;
+
+    public StudentDAO(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.insertStudent = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("students")
+                .usingGeneratedKeyColumns("id");
+
+        this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
 
     @Override
     public List<Student> getAll() {
-        List<Student> students1 = getStudents();
-        if (students1 != null) return students1;
-
-        return null;
+        return jdbcTemplate.query(
+                "SELECT * FROM students ORDER BY id ASC", ROW_MAPPER);
     }
 
     public List<Student> getFiltredByPoint() {
-        List<Student> students = getStudents();
-        students.sort((s1, s2) -> {
-            return s1.getPoint() > s2.getPoint()? 1: -1;
+        List<Student> list = jdbcTemplate.query(
+                "SELECT * FROM students",
+                ROW_MAPPER);
+        list.sort((x, y) -> {
+            return x.getPoint() > y.getPoint()? 1 : -1;
         });
-        if (students != null) return students;
 
-        return null;
+        return list;
     }
 
-    private List<Student> getStudents() {
-        List<Student> students = new ArrayList<>();
+    public Student get(int id) {
+        List<Student> student = jdbcTemplate.query(
+                "SELECT * FROM students WHERE id = ?", ROW_MAPPER, id);
+        return DataAccessUtils.singleResult(student);
+    }
 
-        try {
-            PreparedStatement statement = connection.prepareStatement("select * from students");
-            ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()) {
-                Student student = new Student();
-                student.setId(resultSet.getInt("id"));
-                student.setName(resultSet.getString("name"));
-                student.setSurname(resultSet.getString("surname"));
-                student.setPoint(resultSet.getInt("point"));
-                students.add(student);
+    @Override
+    public Student create(Student student) {
+        MapSqlParameterSource map = new MapSqlParameterSource()
+                .addValue("id", student.getId())
+                .addValue("name", student.getName())
+                .addValue("surname", student.getSurname())
+                .addValue("point", student.getPoint());
+
+        if (student.isNew()) {
+            Number newId = insertStudent.executeAndReturnKey(map);
+            student.setId(newId.intValue());
+        } else {
+            if (namedParameterJdbcTemplate.update("" +
+                    "UPDATE students " +
+                    "   SET name=:name, surname=:surname, point=:point " +
+                    " WHERE id=:id", map) == 0) {
+                return null;
             }
-
-            return students;
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
-        return null;
+        return student;
     }
+
 }
