@@ -12,12 +12,25 @@
         <div class="tbl-content">
             <table cellpadding="0" cellspacing="0" border="0">
                 <thead>
+
                 <tr>
-                    <th><b> Id </b></th>
-                    <th><b> Name </b></th>
-                    <th><b> Surname </b></th>
-                    <th><b> Point </b></th>
-                    <th>                </th>
+                        <th>
+                            <!--/*@thymesVar id="student" type="java.lang.String"*/-->
+                            <a th:href="@{/by(id='id')}"> Id </a>
+                        </th>
+                        <th>
+                            <a th:href="@{/by(name='name')}"> Name </a>
+                        </th>
+                        <th>
+                            <a th:href="@{/by(surname='surname')}"> Surname </a>
+                        </th>
+                        <th>
+                            <a th:href="@{/by(point='point')}"> Point </a>
+                        </th>
+                        <th>
+
+                        </th>
+                    </form>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,19 +50,6 @@
                 </tbody>
             </table>
         </div>
-    </section>
-    <section class="filterSortSection">
-            <table>
-                <tbody>
-                    <tr>
-                        <td><p class="filtresSort">Filters: </p></td>
-                        <td><a href="/students/by">by point</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
     </section>
     <section>
         <a href="/create" class="myButton">Add new</a>

@@ -47,15 +47,28 @@ public class StudentDAO implements daoInterface {
                 "SELECT * FROM students ORDER BY id ASC", ROW_MAPPER);
     }
 
-    public List<Student> getFiltredByPoint() {
-        List<Student> list = jdbcTemplate.query(
-                "SELECT * FROM students",
+    public List<Student> getFiltredById () {
+        return jdbcTemplate.query(
+                "SELECT * FROM students ORDER BY id",
                 ROW_MAPPER);
-        list.sort((x, y) -> {
-            return x.getPoint() > y.getPoint()? 1 : -1;
-        });
+    }
 
-        return list;
+    public List<Student> getFiltredByName () {
+        return jdbcTemplate.query(
+                "SELECT * FROM students ORDER BY name",
+                ROW_MAPPER);
+    }
+
+    public List<Student> getFiltredBySurname () {
+        return jdbcTemplate.query(
+                "SELECT * FROM students ORDER BY surname",
+                ROW_MAPPER);
+    }
+
+    public List<Student> getFiltredByPoint () {
+        return jdbcTemplate.query(
+                "SELECT * FROM students ORDER BY point",
+                ROW_MAPPER);
     }
 
     public Student get(int id) {

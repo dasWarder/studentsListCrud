@@ -7,6 +7,12 @@ public interface daoInterface {
 
     List<Student> getAll();
 
+    List<Student> getFiltredById();
+
+    List<Student> getFiltredByName();
+
+    List<Student> getFiltredBySurname();
+
     List<Student> getFiltredByPoint();
 
     Student get(int id);

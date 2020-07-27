@@ -23,6 +23,12 @@
     top:1px;
 }
 
+.filtersButtons {
+    font-size: 20px;
+    color: #012849;
+    text-transform: uppercase;
+}
+
 label {
     color: #fff;
 }
