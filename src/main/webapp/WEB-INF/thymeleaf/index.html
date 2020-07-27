@@ -27,7 +27,12 @@
                             <td><span th:text="${student.name}"> name </span></td>
                             <td><span th:text="${student.surname}"> surname </span></td>
                             <td><span th:text="${student.point}"> point </span></td>
-                            <td><button type="submit" class="myButton" th:action="@{/create}" method="post">Delete</button></td>
+                            <td>
+                                <form th:action="@{delete}" method="get">
+                                <input type="hidden" name="id" th:value="${student.id}" />
+                                <input type="submit" value="Delete" class="myButton" />
+                                </form>
+                            </td>
                     </tr>
                 </tbody>
             </table>
@@ -38,7 +43,7 @@
                 <tbody>
                     <tr>
                         <td><p class="filtresSort">Filters: </p></td>
-                        <td><a href="/getSortedByPoint">by point</a></td>
+                        <td><a href="/students/by">by point</a></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -47,7 +52,7 @@
             </table>
     </section>
     <section>
-        <a href="/showCreatePage" class="myButton">Add new</a>
+        <a href="/create" class="myButton">Add new</a>
     </section>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="js/index.js"></script>

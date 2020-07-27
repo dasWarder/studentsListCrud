@@ -13,4 +13,6 @@ public interface daoInterface {
 
     Student create(Student student);
 
+    boolean delete(int id);
+
 }

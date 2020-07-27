@@ -41,7 +41,6 @@
 
     <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver"/>
-
         <property name="enableSpringELCompiler" value="true"/>
     </bean>
 
@@ -51,5 +50,6 @@
         <property name="characterEncoding" value="UTF-8"/>
         <property name="viewNames" value="*"/>
     </bean>
+
 
 </beans>

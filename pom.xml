@@ -19,6 +19,7 @@
     <spring-version>5.2.6.RELEASE</spring-version>
     <tomcat.version>9.0.34</tomcat.version>
     <thymeleaf-version>3.0.11.RELEASE</thymeleaf-version>
+    <javax-version>4.0.1</javax-version>
 
     <!-- Hibernate -->
     <hibernate.version>5.4.18.Final</hibernate.version>
@@ -112,6 +113,12 @@
       <groupId>org.thymeleaf</groupId>
       <artifactId>thymeleaf-spring5</artifactId>
       <version>${thymeleaf-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${javax-version}</version>
+      <scope>provided</scope>
     </dependency>
 
 

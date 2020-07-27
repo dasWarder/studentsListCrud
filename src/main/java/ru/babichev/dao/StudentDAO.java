@@ -64,6 +64,10 @@ public class StudentDAO implements daoInterface {
         return DataAccessUtils.singleResult(student);
     }
 
+    public boolean delete(int id) {
+        return jdbcTemplate.update("DELETE FROM students WHERE id = ?", id) != 1;
+    }
+
     @Override
     public Student create(Student student) {
         MapSqlParameterSource map = new MapSqlParameterSource()
