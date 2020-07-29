@@ -47,11 +47,6 @@ public class StudentDAO implements daoInterface {
                 "SELECT * FROM students ORDER BY id ASC", ROW_MAPPER);
     }
 
-    public List<Student> getFiltredById () {
-        return jdbcTemplate.query(
-                "SELECT * FROM students ORDER BY id",
-                ROW_MAPPER);
-    }
 
     public List<Student> getFiltredByName () {
         return jdbcTemplate.query(

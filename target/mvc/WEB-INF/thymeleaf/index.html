@@ -15,17 +15,22 @@
 
                 <tr>
                         <th>
-                            <!--/*@thymesVar id="student" type="java.lang.String"*/-->
-                            <a th:href="@{/by(id='id')}"> Id </a>
+                            <a th:href="@{/by(name='name')}">
+                                <b>Name</b>
+                            </a>
                         </th>
                         <th>
-                            <a th:href="@{/by(name='name')}"> Name </a>
+                            <a th:href="@{/by(surname='surname')}">
+                                <b>Surname</b>
+                            </a>
                         </th>
                         <th>
-                            <a th:href="@{/by(surname='surname')}"> Surname </a>
+                            <a th:href="@{/by(point='point')}">
+                                <b>Point</b>
+                            </a>
                         </th>
                         <th>
-                            <a th:href="@{/by(point='point')}"> Point </a>
+
                         </th>
                         <th>
 
@@ -36,10 +41,15 @@
                 <tbody>
                     <!--/*@thymesVar id="students" type="ru.babichev.model.Student"*/-->
                     <tr th:each="student : ${students}">
-                            <td><span th:text="${student.id}"> Id </span></td>
                             <td><span th:text="${student.name}"> name </span></td>
                             <td><span th:text="${student.surname}"> surname </span></td>
                             <td><span th:text="${student.point}"> point </span></td>
+                            <td>
+                                <form th:action="@{update}" method="get">
+                                    <input type="hidden" name="id" th:value="${student.id}" />
+                                    <input type="submit" value="Update" class="myButton" />
+                                </form>
+                            </td>
                             <td>
                                 <form th:action="@{delete}" method="get">
                                 <input type="hidden" name="id" th:value="${student.id}" />

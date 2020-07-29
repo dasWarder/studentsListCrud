@@ -22,9 +22,6 @@ public class StudentService {
     public List<Student> getFiltredByParam(String param) {
         List<Student> students = null;
         switch (param) {
-            case "id":
-                students = studentDAO.getFiltredById();
-                break;
             case "name":
                 students = studentDAO.getFiltredByName();
                 break;
@@ -45,6 +42,13 @@ public class StudentService {
     }
 
     public Student create(Student student){
+        return studentDAO.create(student);
+    }
+
+    public Student update(Student student, int id){
+        if (student.isNew()) {
+            student.setId(id);
+        }
         return studentDAO.create(student);
     }
 

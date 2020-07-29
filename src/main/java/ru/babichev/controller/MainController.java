@@ -1,6 +1,6 @@
 package ru.babichev.controller;
 
-import org.hibernate.annotations.AttributeAccessor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,15 +52,11 @@ public class MainController {
     }
 
     @GetMapping("/by")
-    public String getAllBetween(@RequestParam(name = "id", required = false) String id,
-                                @RequestParam(name = "name", required = false) String name,
+    public String getAllBetween(@RequestParam(name = "name", required = false) String name,
                                 @RequestParam(name = "surname", required = false) String surname,
                                 @RequestParam(name = "point", required = false) String point,
                                 Model model) {
-        if (id != null) {
-            model.addAttribute("students",
-                    studentService.getFiltredByParam("id"));
-        } else if (name != null) {
+        if (name != null) {
             model.addAttribute("students",
                     studentService.getFiltredByParam("name"));
         } else if (surname != null) {
@@ -75,7 +71,7 @@ public class MainController {
     }
 
     @PostMapping("/create")
-    public String updateOrCreate(HttpServletRequest request) {
+    public String Create(HttpServletRequest request) {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         int point = getIntParam(request, "point");
@@ -83,6 +79,20 @@ public class MainController {
         Student student1 = new Student(name, surname, point);
 
         studentService.create(student1);
+        return "redirect:/";
+    }
+
+    @PostMapping("/update")
+    public String update(@RequestParam(name = "id", required = false) int id,
+                                 HttpServletRequest request) {
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        int point = getIntParam(request, "point");
+
+        Student student1 = new Student(name, surname, point);
+
+        studentService.update(student1, id);
+
         return "redirect:/";
     }
 

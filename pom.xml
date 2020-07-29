@@ -22,8 +22,6 @@
     <javax-version>4.0.1</javax-version>
 
     <!-- Hibernate -->
-    <hibernate.version>5.4.18.Final</hibernate.version>
-    <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
     <javax-el.version>3.0.1-b11</javax-el.version>
 
     <!--DB-->
@@ -68,31 +66,11 @@
       <version>5.2.6.RELEASE</version>
     </dependency>
 
-    <!--DataJPA-->
+    <!--JDBC-->
     <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-jpa</artifactId>
-      <version>2.3.0.RELEASE</version>
-    </dependency>
-
-
-    <!--- ORM -->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>${hibernate.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate.validator</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>${hibernate-validator.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>javax.el</artifactId>
-      <version>${javax-el.version}</version>
-      <scope>provided</scope>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>5.2.6.RELEASE</version>
     </dependency>
 
     <!-- DB -->
@@ -113,6 +91,12 @@
       <groupId>org.thymeleaf</groupId>
       <artifactId>thymeleaf-spring5</artifactId>
       <version>${thymeleaf-version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
